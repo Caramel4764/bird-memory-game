@@ -39,3 +39,16 @@ body {
   width: 100%;
   margin: 0px;
 }
+.headerDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-content: space-between;
+
+}
+.title {
+  padding-left: 20px;
+}
+.score {
+  padding-right: 20px;
+}

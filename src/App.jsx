@@ -4,11 +4,36 @@ import Card from "./components/Card"
 function App() {
   const [highScore, setHighScore] = useState(0);
   const [score, setScore] = useState(0);
-  //max card is 151
+  //max card is 151 because 151 pokemons
   const [maxCard, setMaxCard] = useState(151);
-  //151
   const [cardList, setCardList] = useState([]);
+  const [isGameOver, setIsGameOver] = useState(false);
   const pokeAPI = "https://pokeapi.co/api/v2/pokemon/";
+  function shuffleCard () {
+    let newIndexList = [];
+    let newCardList = [];
+    for (let i = 0; i < cardList.length; i++) {
+      let ranNum = Math.floor(Math.random()*cardList.length);
+      while(checkDupId(newIndexList, ranNum)) {
+        ranNum = Math.floor(Math.random()*cardList.length);
+      }
+      newIndexList.push(ranNum);
+    }
+    for (let i = 0; i < newIndexList.length; i++) {
+      newCardList.push(cardList[newIndexList[i]]);
+    }
+    setCardList(newCardList);
+  }
+  function selectCard (card) {
+    if (card.hasClicked && isGameOver == false) {
+      setIsGameOver(true);
+      shuffleCard();
+      alert("gameOver");
+    } else if (!card.hasClicked && isGameOver == false) {
+      card.hasClicked = true;
+      setScore(score+1);
+    }
+  }
   function checkDupId(list, id) {
     for (let j = 0; j < list.length; j++) {
       if (list[j] == id) {
@@ -53,14 +78,18 @@ function App() {
       addPokeCard(pokeIdList);
     } 
     getPokeCard(pokeIdList, newCards);
-    /*for (let i = 0; i<maxCard; i++) {
-        
-        
-    }*/
   }, [])
   return (
     <>
-      <div className="cardDiv">{cardList.map((card, index)=>(<Card name={card.name} src={card.src}></Card>))}</div>
+      <div class="headerDiv">
+        <div className="title">
+          <h1>Pokemon Memory Game</h1>
+        </div>
+        <div className="score">
+          <p>Score: {score}</p>
+        </div>
+      </div>
+      <div className="cardDiv">{cardList.map((card, index)=>(<Card onClick={selectCard} card={card}></Card>))}</div>
     </>
   )
 }
