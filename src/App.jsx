@@ -9,6 +9,14 @@ function App() {
   const [cardList, setCardList] = useState([]);
   const [isGameOver, setIsGameOver] = useState(false);
   const pokeAPI = "https://pokeapi.co/api/v2/pokemon/";
+  function restart() {
+    if (score > highScore) {
+      setHighScore(score);
+    }
+    setIsGameOver(false);
+    setScore(0);
+    shuffleCard();
+  }
   function shuffleCard () {
     let newIndexList = [];
     let newCardList = [];
@@ -27,11 +35,11 @@ function App() {
   function selectCard (card) {
     if (card.hasClicked && isGameOver == false) {
       setIsGameOver(true);
-      shuffleCard();
-      alert("gameOver");
+      alert('Game Over! Pokemons outlined that were clicked are now in red. Click "restart" to play again');
     } else if (!card.hasClicked && isGameOver == false) {
       card.hasClicked = true;
       setScore(score+1);
+      shuffleCard();
     }
   }
   function checkDupId(list, id) {
@@ -85,8 +93,12 @@ function App() {
         <div className="title">
           <h1>Pokemon Memory Game</h1>
         </div>
+        {isGameOver&&<div className="gameOverDiv">
+            <button className="restart" onClick={restart}>Restart</button>
+        </div>}
         <div className="score">
-          <p>Score: {score}</p>
+          <p>Score: {score}/{maxCard} ({(score/maxCard*100).toFixed(2)}%)</p>
+          <p>Highscore: {highScore}/{maxCard} ({(highScore/maxCard*100).toFixed(2)}%)</p>
         </div>
       </div>
       <div className="cardDiv">{cardList.map((card, index)=>(<Card onClick={selectCard} card={card}></Card>))}</div>
