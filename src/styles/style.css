@@ -1,0 +1,30 @@
+.card-bg {
+  background-color: rgb(96, 162, 96);
+  width: 150px;
+  height: 180px;
+  margin: 2px;
+}
+.poke-img {
+  width: 150px;
+  height: auto;
+  image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+  image-rendering: -moz-crisp-edges;          /* Firefox                        */
+  image-rendering: -o-crisp-edges;            /* Opera                          */
+  image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+  image-rendering: pixelated;                 /* Universal support since 2021   */
+  image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+  -ms-interpolation-mode: nearest-neighbor;
+}
+.poke-img-container {
+  width: 150px;
+  height: 150px;
+  overflow:visible;
+  display:flex;
+  justify-content: center;
+}
+.poke-name {
+  position: relative;
+  bottom: 18px;
+  text-align: center;
+  font-size: 18px;
+}
