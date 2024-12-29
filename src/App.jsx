@@ -18,6 +18,7 @@ function App() {
     setIsGameOver(false);
     setScore(0);
     shuffleCard();
+    cardList.forEach((card)=>(card.hasClicked=false));
   }
   function shuffleCard () {
     let newIndexList = [];
