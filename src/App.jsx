@@ -37,7 +37,7 @@ function App() {
   function selectCard (card) {
     if (card.hasClicked && isGameOver == false) {
       setIsGameOver(true);
-      alert('Game Over!');
+      alert(`Game Over! You've collected ${score} pokemons`);
     } else if (!card.hasClicked && isGameOver == false) {
       card.hasClicked = true;
       setScore(score+1);
