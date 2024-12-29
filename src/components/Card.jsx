@@ -1,5 +1,6 @@
 import "../styles/style.css"
 import pokeball from "../assets/pokeball.png"
+
 function Card({card, onClick, selectCard, isGameOver}) {
   return(
     <>

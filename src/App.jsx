@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import Card from "./components/Card"
+import pokeball from "./assets/pokeball.png"
+import { VscDebugRestart } from "react-icons/vsc";
 
 function App() {
   const [highScore, setHighScore] = useState(0);
@@ -35,7 +37,7 @@ function App() {
   function selectCard (card) {
     if (card.hasClicked && isGameOver == false) {
       setIsGameOver(true);
-      alert('Game Over! Pokemons outlined that were clicked are now in red. Click "restart" to play again');
+      alert('Game Over!');
     } else if (!card.hasClicked && isGameOver == false) {
       card.hasClicked = true;
       setScore(score+1);
@@ -92,10 +94,11 @@ function App() {
     <>
       <div class="headerDiv">
         <div className="title">
+          <img className={"icon"} src={pokeball}></img>
           <h1>Pokemon Memory Game</h1>
         </div>
         {isGameOver&&<div className="gameOverDiv">
-            <button className="restart" onClick={restart}>Restart</button>
+            <button className="restart" onClick={restart}><VscDebugRestart></VscDebugRestart>Restart</button>
         </div>}
         <div className="score">
           <p>Score: {score}/{maxCard} ({(score/maxCard*100).toFixed(2)}%)</p>
