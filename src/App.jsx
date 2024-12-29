@@ -40,7 +40,7 @@ function App() {
       card.hasClicked = true;
       setScore(score+1);
       //reenable this later
-      //shuffleCard();
+      shuffleCard();
     }
   }
   function checkDupId(list, id) {
@@ -68,7 +68,7 @@ function App() {
           hasClicked: false,
           name: data.name.slice(0,1).toUpperCase()+data.name.slice(1, data.name.length),
           src: data.sprites.front_default,
-          type: data.types[0].type.name, //first type listed
+          type: data.types, //type.name for type
         }
         newCards.push(newCard);
       })
