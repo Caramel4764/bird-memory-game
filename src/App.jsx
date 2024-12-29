@@ -10,6 +10,7 @@ function App() {
   const [maxCard, setMaxCard] = useState(151);
   const [cardList, setCardList] = useState([]);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [isAllCardLoaded, setIsAllCardLoaded] = useState(false);
   const pokeAPI = "https://pokeapi.co/api/v2/pokemon/";
   function restart() {
     if (score > highScore) {
@@ -78,6 +79,7 @@ function App() {
       .then(()=>{
         if (newCards.length==pokeIdList.length) {
           setCardList(newCards);
+          setIsAllCardLoaded(true);
         }
       })
       .catch(error => console.error('Error:', error));
@@ -106,7 +108,12 @@ function App() {
           <p>Highscore: {highScore}/{maxCard} ({(highScore/maxCard*100).toFixed(2)}%)</p>
         </div>
       </div>
-      <div className="cardDiv">{cardList.map((card, index)=>(<Card key={card.name} className={`test ${isGameOver&&card.hasClicked?"gameOverCard": "card"}`} isGameOver={isGameOver} onClick={selectCard} card={card}></Card>))}</div>
+      <div className="cardDiv">{
+        isAllCardLoaded ? cardList.map((card, index)=>(
+          <Card key={card.name} className={`test ${isGameOver&&card.hasClicked?"gameOverCard": "card"}`} isGameOver={isGameOver} onClick={selectCard} card={card}></Card>
+        )):
+          <p>Gathering all gen 1 pokemons, please wait...</p>
+      }</div>
     </>
   )
 }
