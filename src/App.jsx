@@ -39,7 +39,8 @@ function App() {
     } else if (!card.hasClicked && isGameOver == false) {
       card.hasClicked = true;
       setScore(score+1);
-      shuffleCard();
+      //reenable this later
+      //shuffleCard();
     }
   }
   function checkDupId(list, id) {
@@ -101,7 +102,7 @@ function App() {
           <p>Highscore: {highScore}/{maxCard} ({(highScore/maxCard*100).toFixed(2)}%)</p>
         </div>
       </div>
-      <div className="cardDiv">{cardList.map((card, index)=>(<Card onClick={selectCard} card={card}></Card>))}</div>
+      <div className="cardDiv">{cardList.map((card, index)=>(<Card className={`test ${isGameOver&&card.hasClicked?"gameOverCard": "card"}`} isGameOver={isGameOver} onClick={selectCard} card={card}></Card>))}</div>
     </>
   )
 }

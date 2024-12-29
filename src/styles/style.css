@@ -9,6 +9,8 @@ body {
 }
 .poke-img {
   width: 150px;
+  z-index: 5;
+  position: relative;
   height: auto;
   image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
   image-rendering: -moz-crisp-edges;          /* Firefox                        */
@@ -18,13 +20,7 @@ body {
   image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
   -ms-interpolation-mode: nearest-neighbor;
 }
-.poke-img-container {
-  width: 150px;
-  height: 150px;
-  overflow:visible;
-  display:flex;
-  justify-content: center;
-}
+
 .poke-name {
   position: relative;
   bottom: 18px;
@@ -51,4 +47,34 @@ body {
 }
 .score {
   padding-right: 20px;
+}
+.gameOverCard {
+  border: 3px rgb(219, 0, 0) solid
+}
+.card {
+  border: 3px rgb(0, 0, 0) solid
+}
+.poke-captured-img {
+  position:absolute;
+}
+
+.poke-captured-img img{
+  width: 140px;
+  opacity: 0.4;
+}
+
+.card-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  overflow:visible;
+}
+
+.poke-img-container {
+
+  /*display:flex;
+  align-items: center;
+  justify-content: center;*/
 }
